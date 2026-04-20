@@ -21,7 +21,7 @@ vercel
 
 Place your resume PDF in this folder and name it exactly:
 ```
-Noorbasha_Shaik_Resume.pdf
+Noorbasha_Shaik.pdf
 ```
 
 It will be downloadable from the Resume button in the nav and hero.
