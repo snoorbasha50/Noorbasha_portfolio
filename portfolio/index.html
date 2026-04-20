@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Noorbasha Shaik — SDE-2 · Full Stack & Distributed Systems</title>
+  <meta name="description" content="Noorbasha Shaik — SDE-2 Full Stack Engineer specialising in distributed systems, microservices, Kafka, and AI-powered applications. Based in Bangalore, India." />
+  <meta property="og:title" content="Noorbasha Shaik — SDE-2 Full Stack Engineer" />
+  <meta property="og:description" content="3+ years building scalable fintech infrastructure. Microservices, Kafka, Redis, GraphQL, AI/RAG." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <style>
+    /* ── RESET & TOKENS ─────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #080c10;
+      --bg2:      #0d1117;
+      --bg3:      #111822;
+      --bg4:      #182030;
+      --border:   rgba(99,179,237,0.09);
+      --border2:  rgba(99,179,237,0.22);
+      --text:     #e8edf5;
+      --muted:    #6b7c93;
+      --dim:      #3a4f66;
+      --accent:   #63b3ed;
+      --green:    #68d391;
+      --orange:   #f6ad55;
+      --red:      #fc8181;
+      --purple:   #a78bfa;
+      --mono:     'Space Mono', monospace;
+      --display:  'Syne', sans-serif;
+      --body:     'DM Sans', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--body);
+      font-size: 15px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── SCROLLBAR ──────────────────────────────────── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--dim); border-radius: 3px; }
+
+    /* ── NAV ────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(8,12,16,0.88);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2.5rem; height: 56px;
+    }
+    .nav-logo {
+      font-family: var(--mono); font-size: 13px; color: var(--accent);
+      letter-spacing: .06em; text-decoration: none;
+    }
+    .nav-logo span { color: var(--dim); }
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+    .nav-links a {
+      color: var(--muted); text-decoration: none; font-size: 11px;
+      letter-spacing: .08em; font-family: var(--mono);
+      transition: color .2s; text-transform: uppercase;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-actions { display: flex; gap: .75rem; align-items: center; }
+    .nav-btn {
+      border: 1px solid var(--border2); color: var(--accent);
+      font-size: 11px; padding: 6px 16px; border-radius: 6px;
+      text-decoration: none; font-family: var(--mono);
+      background: rgba(99,179,237,0.04); transition: all .2s;
+      letter-spacing: .04em;
+    }
+    .nav-btn:hover { background: rgba(99,179,237,0.1); }
+    .nav-resume {
+      background: var(--accent); color: var(--bg);
+      font-size: 11px; padding: 6px 16px; border-radius: 6px;
+      text-decoration: none; font-family: var(--mono); font-weight: 700;
+      transition: opacity .2s; letter-spacing: .04em;
+    }
+    .nav-resume:hover { opacity: .85; }
+
+    /* ── HERO ───────────────────────────────────────── */
+    .hero {
+      min-height: 100vh; display: flex; flex-direction: column;
+      justify-content: center; max-width: 960px;
+      margin: 0 auto; padding: 6rem 2rem 4rem;
+    }
+    .hero-tag {
+      font-family: var(--mono); font-size: 11px; color: var(--green);
+      margin-bottom: 1.8rem; display: flex; align-items: center;
+      gap: 10px; letter-spacing: .1em; text-transform: uppercase;
+    }
+    .hero-tag::before {
+      content: ''; display: block; width: 28px; height: 1px; background: var(--green);
+    }
+    .hero-tag .dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--green); animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: .4; transform: scale(.7); }
+    }
+    .hero-name {
+      font-family: var(--display);
+      font-size: clamp(3rem, 9vw, 6rem);
+      font-weight: 800; line-height: .92;
+      letter-spacing: -.03em; margin-bottom: 1.2rem;
+    }
+    .hero-name .line2 { color: var(--accent); display: block; }
+    .hero-title {
+      font-size: clamp(.95rem, 2vw, 1.15rem);
+      color: var(--muted); margin-bottom: 1.5rem;
+      font-weight: 300; letter-spacing: .02em;
+    }
+    .hero-title b { color: var(--text); font-weight: 500; }
+    .hero-desc {
+      max-width: 560px; color: #8fa3b8; font-size: 15px;
+      line-height: 1.85; margin-bottom: 2.5rem; font-weight: 300;
+    }
+    .hero-ctas { display: flex; gap: .75rem; flex-wrap: wrap; margin-bottom: 4rem; }
+    .cta-primary {
+      background: var(--accent); color: var(--bg);
+      padding: 11px 28px; border-radius: 8px; font-weight: 700;
+      font-size: 13px; text-decoration: none; font-family: var(--mono);
+      transition: opacity .2s; letter-spacing: .02em;
+    }
+    .cta-primary:hover { opacity: .85; }
+    .cta-ghost {
+      border: 1px solid var(--border2); color: var(--text);
+      padding: 11px 28px; border-radius: 8px; font-size: 13px;
+      text-decoration: none; font-family: var(--mono);
+      transition: all .2s; letter-spacing: .02em;
+    }
+    .cta-ghost:hover { border-color: var(--accent); color: var(--accent); }
+    .cta-resume {
+      border: 1px solid rgba(104,211,145,0.3); color: var(--green);
+      padding: 11px 28px; border-radius: 8px; font-size: 13px;
+      text-decoration: none; font-family: var(--mono);
+      transition: all .2s; letter-spacing: .02em;
+      background: rgba(104,211,145,0.04);
+    }
+    .cta-resume:hover { background: rgba(104,211,145,0.1); }
+
+    /* Stats bar */
+    .hero-stats {
+      display: flex; gap: 0; flex-wrap: wrap;
+      padding-top: 2.5rem; border-top: 1px solid var(--border);
+    }
+    .stat { padding: .4rem 3rem .4rem 0; }
+    .stat-num {
+      font-family: var(--display); font-size: 2rem;
+      font-weight: 800; line-height: 1; color: var(--text);
+    }
+    .stat-num b { color: var(--accent); }
+    .stat-label {
+      font-size: 11px; color: var(--muted); margin-top: 4px;
+      font-family: var(--mono); letter-spacing: .06em; text-transform: uppercase;
+    }
+
+    /* ── SHARED SECTION ─────────────────────────────── */
+    .section { max-width: 960px; margin: 0 auto; padding: 5.5rem 2rem; }
+    .sec-tag {
+      font-family: var(--mono); font-size: 11px; color: var(--accent);
+      margin-bottom: .5rem; letter-spacing: .12em; text-transform: uppercase;
+    }
+    .sec-title {
+      font-family: var(--display); font-size: clamp(1.6rem, 4vw, 2.2rem);
+      font-weight: 800; letter-spacing: -.02em; margin-bottom: .8rem;
+    }
+    .sec-line { width: 36px; height: 2px; background: var(--accent); margin-bottom: 3rem; }
+
+    /* ── DIVIDER ────────────────────────────────────── */
+    .divider {
+      max-width: 960px; margin: 0 auto;
+      border: none; border-top: 1px solid var(--border);
+    }
+
+    /* ── ABOUT ──────────────────────────────────────── */
+    .about-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 3rem; align-items: start; }
+    .about-text { color: #8fa3b8; line-height: 1.9; font-weight: 300; }
+    .about-text p { margin-bottom: 1rem; }
+    .about-text strong { color: var(--text); font-weight: 500; }
+    .about-cards { display: flex; flex-direction: column; gap: 1rem; }
+    .about-card {
+      background: var(--bg3); border: 1px solid var(--border);
+      border-radius: 14px; padding: 1.4rem;
+    }
+    .about-card h4 {
+      font-family: var(--mono); font-size: 10px; color: var(--dim);
+      letter-spacing: .12em; text-transform: uppercase; margin-bottom: 1rem;
+    }
+    .about-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 8px 0; border-bottom: 1px solid var(--border);
+    }
+    .about-row:last-child { border: none; }
+    .about-row-label { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+    .about-row-val { font-size: 12px; color: var(--text); font-family: var(--mono); }
+    .about-row-val.green { color: var(--green); }
+
+    /* ── SKILLS ─────────────────────────────────────── */
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.2rem; }
+    .skill-card {
+      background: var(--bg3); border: 1px solid var(--border);
+      border-radius: 14px; padding: 1.5rem;
+      transition: border-color .25s, transform .2s;
+    }
+    .skill-card:hover { border-color: var(--border2); transform: translateY(-2px); }
+    .skill-card-label {
+      font-family: var(--mono); font-size: 10px; color: var(--dim);
+      letter-spacing: .1em; text-transform: uppercase;
+      margin-bottom: .9rem; display: flex; align-items: center; gap: 8px;
+    }
+    .skill-card-label::before {
+      content: ''; display: block; width: 6px; height: 6px;
+      border-radius: 50%; background: var(--accent);
+    }
+    .skill-card-label.g::before { background: var(--green); }
+    .skill-card-label.o::before { background: var(--orange); }
+    .skill-card-label.p::before { background: var(--purple); }
+    .tags { display: flex; flex-wrap: wrap; gap: 5px; }
+    .tag {
+      font-size: 10px; font-family: var(--mono); border-radius: 4px;
+      padding: 3px 9px; letter-spacing: .02em;
+    }
+    .tag-b { background: rgba(99,179,237,.07); border: 1px solid rgba(99,179,237,.2); color: var(--accent); }
+    .tag-g { background: rgba(104,211,145,.07); border: 1px solid rgba(104,211,145,.2); color: var(--green); }
+    .tag-o { background: rgba(246,173,85,.07); border: 1px solid rgba(246,173,85,.2); color: var(--orange); }
+    .tag-p { background: rgba(167,139,250,.07); border: 1px solid rgba(167,139,250,.2); color: var(--purple); }
+    .tag-w { background: rgba(232,237,245,.04); border: 1px solid rgba(232,237,245,.1); color: var(--muted); }
+
+    /* ── EXPERIENCE ─────────────────────────────────── */
+    .exp-item {
+      display: grid; grid-template-columns: 150px 1fr;
+      gap: 2rem; padding: 2.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .exp-item:last-child { border: none; }
+    .exp-date {
+      font-family: var(--mono); font-size: 11px; color: var(--dim);
+      padding-top: 4px; line-height: 1.8;
+    }
+    .exp-badge {
+      display: inline-block; font-size: 10px; font-family: var(--mono);
+      background: rgba(104,211,145,.08); color: var(--green);
+      border: 1px solid rgba(104,211,145,.2); padding: 2px 10px;
+      border-radius: 4px; margin-bottom: .6rem; letter-spacing: .04em;
+    }
+    .exp-badge.blue {
+      background: rgba(99,179,237,.08); color: var(--accent);
+      border-color: rgba(99,179,237,.2);
+    }
+    .exp-role {
+      font-family: var(--display); font-size: 1.1rem;
+      font-weight: 700; margin-bottom: .2rem;
+    }
+    .exp-company { font-size: 13px; color: var(--muted); margin-bottom: 1.2rem; }
+    .exp-points { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .exp-points li {
+      font-size: 13.5px; color: #8fa3b8; display: flex;
+      gap: 10px; line-height: 1.65; font-weight: 300;
+    }
+    .exp-points li::before {
+      content: '›'; color: var(--accent); flex-shrink: 0;
+      font-size: 18px; margin-top: -2px;
+    }
+    .exp-points b { color: var(--text); font-weight: 500; }
+
+    /* ── PROJECTS ───────────────────────────────────── */
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 1.2rem; }
+    .project-card {
+      background: var(--bg3); border: 1px solid var(--border);
+      border-radius: 14px; padding: 1.75rem;
+      display: flex; flex-direction: column;
+      transition: border-color .25s, transform .2s;
+    }
+    .project-card:hover { border-color: var(--border2); transform: translateY(-2px); }
+    .project-card.featured { border-color: rgba(104,211,145,.2); }
+    .project-card.featured2 { border-color: rgba(167,139,250,.2); }
+    .project-top {
+      display: flex; justify-content: space-between;
+      align-items: flex-start; margin-bottom: 1.1rem;
+    }
+    .project-dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--green); margin-top: 4px; flex-shrink: 0;
+    }
+    .project-dot.b { background: var(--accent); }
+    .project-dot.p { background: var(--purple); }
+    .project-dot.o { background: var(--orange); }
+    .project-links { display: flex; gap: 6px; }
+    .project-link {
+      font-size: 10px; font-family: var(--mono); color: var(--muted);
+      text-decoration: none; border: 1px solid var(--border);
+      padding: 4px 10px; border-radius: 4px; transition: all .2s;
+      letter-spacing: .04em;
+    }
+    .project-link:hover { color: var(--accent); border-color: rgba(99,179,237,.3); }
+    .project-link.live { color: var(--green); border-color: rgba(104,211,145,.25); background: rgba(104,211,145,.04); }
+    .project-link.live:hover { background: rgba(104,211,145,.1); }
+    .project-title {
+      font-family: var(--display); font-size: 1.05rem;
+      font-weight: 700; margin-bottom: .4rem;
+    }
+    .project-desc {
+      font-size: 13.5px; color: #7a8fa8; line-height: 1.75;
+      margin-bottom: 1.3rem; flex: 1; font-weight: 300;
+    }
+    .project-desc b { color: var(--text); font-weight: 500; }
+    .project-stack { display: flex; flex-wrap: wrap; gap: 5px; margin-top: auto; }
+
+    /* ── DSA ────────────────────────────────────────── */
+    .lc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 1.5rem; }
+    .lc-card {
+      background: var(--bg3); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.5rem; text-align: center;
+    }
+    .lc-num { font-family: var(--display); font-size: 2.2rem; font-weight: 800; line-height: 1; }
+    .lc-num.e { color: var(--green); }
+    .lc-num.m { color: var(--orange); }
+    .lc-num.h { color: var(--red); }
+    .lc-label { font-size: 11px; color: var(--muted); margin-top: 6px; font-family: var(--mono); letter-spacing: .06em; }
+    .lc-topics {
+      background: var(--bg3); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.5rem;
+      display: flex; justify-content: space-between;
+      align-items: center; flex-wrap: wrap; gap: 1rem;
+    }
+    .lc-topics-list { display: flex; flex-wrap: wrap; gap: 6px; }
+
+    /* ── CONTACT ────────────────────────────────────── */
+    .contact-intro { max-width: 520px; color: #7a8fa8; line-height: 1.85; margin-bottom: 2.5rem; font-weight: 300; }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .contact-card {
+      background: var(--bg3); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.3rem;
+      display: flex; align-items: center; gap: 1rem;
+      text-decoration: none; color: var(--text);
+      transition: border-color .25s, transform .2s;
+    }
+    .contact-card:hover { border-color: var(--border2); transform: translateY(-2px); }
+    .contact-icon {
+      width: 40px; height: 40px; border-radius: 8px;
+      background: rgba(99,179,237,.07);
+      border: 1px solid rgba(99,179,237,.15);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; font-family: var(--mono); font-size: 12px;
+      color: var(--accent); font-weight: 700;
+    }
+    .contact-label { font-size: 10px; color: var(--dim); margin-bottom: 3px; font-family: var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+    .contact-val { font-size: 13px; font-weight: 500; }
+
+    /* ── FOOTER ─────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border); text-align: center;
+      padding: 2rem; font-family: var(--mono); font-size: 11px;
+      color: var(--dim); letter-spacing: .06em;
+    }
+    footer span { color: var(--accent); }
+
+    /* ── MOBILE ─────────────────────────────────────── */
+    @media (max-width: 700px) {
+      .nav-links { display: none; }
+      .about-grid { grid-template-columns: 1fr; }
+      .exp-item { grid-template-columns: 1fr; gap: .5rem; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .lc-grid { grid-template-columns: repeat(3, 1fr); }
+      .contact-grid { grid-template-columns: 1fr; }
+      .hero-stats { gap: 0; }
+      .stat { padding: .5rem 1.5rem .5rem 0; }
+    }
+    @media (max-width: 420px) {
+      .lc-grid { grid-template-columns: 1fr; }
+      .hero-name { font-size: 2.6rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ──────────────────────────────────────────── -->
+<nav>
+  <a href="#" class="nav-logo">NS<span>.dev</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">about</a></li>
+    <li><a href="#skills">skills</a></li>
+    <li><a href="#experience">experience</a></li>
+    <li><a href="#projects">projects</a></li>
+    <li><a href="#dsa">dsa</a></li>
+    <li><a href="#contact">contact</a></li>
+  </ul>
+  <div class="nav-actions">
+    <a href="mailto:snoorbasha50@gmail.com" class="nav-btn">hire me →</a>
+    <a href="/Noorbasha_Shaik_Resume.pdf" download class="nav-resume">resume ↓</a>
+  </div>
+</nav>
+
+<!-- ── HERO ──────────────────────────────────────────── -->
+<div class="hero">
+  <div class="hero-tag">
+    <div class="dot"></div>
+    open to new opportunities
+  </div>
+  <h1 class="hero-name">
+    Noorbasha
+    <span class="line2">Shaik.</span>
+  </h1>
+  <p class="hero-title">
+    <b>SDE-2</b> &nbsp;·&nbsp; Full Stack &amp; Distributed Systems &nbsp;·&nbsp; Fintech
+  </p>
+  <p class="hero-desc">
+    3+ years designing and building scalable distributed systems in fintech. Led large-scale
+    monolith-to-microservices migration, improving API latency by 60% and system throughput by 40%.
+    Deep expertise in event-driven architecture, Kafka, and AI-powered applications.
+  </p>
+  <div class="hero-ctas">
+    <a href="#projects" class="cta-primary">View Work</a>
+    <a href="https://github.com/snoorbasha50" target="_blank" rel="noopener" class="cta-ghost">GitHub</a>
+    <a href="https://linkedin.com/in/noorbasha-shaik-491aa2201" target="_blank" rel="noopener" class="cta-ghost">LinkedIn</a>
+    <a href="/Noorbasha_Shaik_Resume.pdf" download class="cta-resume">Download Resume ↓</a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num">3<b>+</b></div>
+      <div class="stat-label">yrs experience</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">10<b>+</b></div>
+      <div class="stat-label">bank integrations</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">10<b>M+</b></div>
+      <div class="stat-label">records migrated</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">60<b>%</b></div>
+      <div class="stat-label">latency reduced</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">100<b>+</b></div>
+      <div class="stat-label">dsa solved</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider" />
+
+<!-- ── ABOUT ──────────────────────────────────────────── -->
+<section class="section" id="about">
+  <div class="sec-tag">// 01. about</div>
+  <h2 class="sec-title">Who I Am</h2>
+  <div class="sec-line"></div>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>I'm a <strong>Software Development Engineer II</strong> based in Bangalore, building next-generation fintech infrastructure at <strong>Neokred Technologies</strong>.</p>
+      <p>I architected the full migration from a monolithic MERN stack to a distributed <strong>TypeScript microservices platform</strong> — integrating Kafka for real-time event streaming, gRPC for inter-service communication, and Redis for high-performance caching across services.</p>
+      <p>My production work includes engineering <strong>10+ bank integrations</strong> with idempotency and fault tolerance, zero-downtime migration of <strong>10M+ records</strong> using Apache NiFi with rollback strategies, and a callback retry mechanism with <strong>exponential backoff</strong> for payment systems.</p>
+      <p>Outside of the distributed systems world, I build AI-powered applications — including a deployed <strong>RAG-based finance dashboard</strong> using LLaMA 3.3 70B, BM25 retrieval, and Kafka event streaming. I lead code reviews, drive architectural decisions, and mentor junior engineers.</p>
+    </div>
+    <div class="about-cards">
+      <div class="about-card">
+        <h4>// quick facts</h4>
+        <div class="about-row"><span class="about-row-label">location</span><span class="about-row-val">Bangalore, IN</span></div>
+        <div class="about-row"><span class="about-row-label">current role</span><span class="about-row-val">SDE-2</span></div>
+        <div class="about-row"><span class="about-row-label">domain</span><span class="about-row-val">Fintech / Payments</span></div>
+        <div class="about-row"><span class="about-row-label">education</span><span class="about-row-val">B.Sc · 8.0 CGPA</span></div>
+        <div class="about-row"><span class="about-row-label">status</span><span class="about-row-val green">● open to work</span></div>
+      </div>
+      <div class="about-card">
+        <h4>// achievements</h4>
+        <div class="about-row"><span class="about-row-label">Employee of Month</span><span class="about-row-val green">awarded</span></div>
+        <div class="about-row"><span class="about-row-label">SDE-1 → SDE-2</span><span class="about-row-val green">promoted</span></div>
+        <div class="about-row"><span class="about-row-label">10M+ record migration</span><span class="about-row-val green">zero downtime</span></div>
+        <div class="about-row"><span class="about-row-label">API latency</span><span class="about-row-val green">reduced 60%</span></div>
+        <div class="about-row"><span class="about-row-label">Throughput</span><span class="about-row-val green">improved 40%</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- ── SKILLS ──────────────────────────────────────────── -->
+<section class="section" id="skills">
+  <div class="sec-tag">// 02. skills</div>
+  <h2 class="sec-title">Tech Stack</h2>
+  <div class="sec-line"></div>
+  <div class="skills-grid">
+
+    <div class="skill-card">
+      <div class="skill-card-label g">frontend</div>
+      <div class="tags">
+        <span class="tag tag-g">React.js</span>
+        <span class="tag tag-g">Next.js</span>
+        <span class="tag tag-g">TypeScript</span>
+        <span class="tag tag-g">Redux</span>
+        <span class="tag tag-g">TailwindCSS</span>
+        <span class="tag tag-w">JavaScript ES6+</span>
+        <span class="tag tag-w">HTML5 / CSS3</span>
+      </div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-card-label">backend &amp; apis</div>
+      <div class="tags">
+        <span class="tag tag-b">Node.js</span>
+        <span class="tag tag-b">Fastify</span>
+        <span class="tag tag-b">Express.js</span>
+        <span class="tag tag-b">gRPC</span>
+        <span class="tag tag-b">GraphQL</span>
+        <span class="tag tag-w">REST APIs</span>
+        <span class="tag tag-w">Microservices</span>
+      </div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-card-label g">data &amp; streaming</div>
+      <div class="tags">
+        <span class="tag tag-g">MongoDB</span>
+        <span class="tag tag-g">Redis</span>
+        <span class="tag tag-g">Apache Kafka</span>
+        <span class="tag tag-g">Apache NiFi</span>
+        <span class="tag tag-w">Data Modeling</span>
+        <span class="tag tag-w">Indexing</span>
+        <span class="tag tag-w">Query Optimisation</span>
+      </div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-card-label o">devops &amp; cloud</div>
+      <div class="tags">
+        <span class="tag tag-o">Docker</span>
+        <span class="tag tag-o">AWS EC2</span>
+        <span class="tag tag-o">AWS S3</span>
+        <span class="tag tag-o">GitHub Actions</span>
+        <span class="tag tag-o">CI/CD</span>
+        <span class="tag tag-w">Nginx</span>
+        <span class="tag tag-w">Linux</span>
+      </div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-card-label p">ai / llm</div>
+      <div class="tags">
+        <span class="tag tag-p">Groq LLaMA 3.3 70B</span>
+        <span class="tag tag-p">RAG</span>
+        <span class="tag tag-p">BM25 Retrieval</span>
+        <span class="tag tag-p">LangChain</span>
+        <span class="tag tag-w">Prompt Engineering</span>
+        <span class="tag tag-w">OpenAI API</span>
+        <span class="tag tag-w">Scikit-learn</span>
+        <span class="tag tag-w">VADER NLP</span>
+      </div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-card-label">core concepts</div>
+      <div class="tags">
+        <span class="tag tag-b">System Design</span>
+        <span class="tag tag-b">Distributed Systems</span>
+        <span class="tag tag-b">Event-driven Arch</span>
+        <span class="tag tag-w">Scalability</span>
+        <span class="tag tag-w">Fault Tolerance</span>
+        <span class="tag tag-w">Idempotency</span>
+        <span class="tag tag-w">Exponential Backoff</span>
+      </div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-card-label g">workflow &amp; tools</div>
+      <div class="tags">
+        <span class="tag tag-w">Git / GitHub</span>
+        <span class="tag tag-w">Bitbucket</span>
+        <span class="tag tag-w">Jira</span>
+        <span class="tag tag-w">Agile / Scrum</span>
+        <span class="tag tag-w">Code Reviews</span>
+        <span class="tag tag-w">PR Management</span>
+        <span class="tag tag-w">Mentoring</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- ── EXPERIENCE ──────────────────────────────────────────── -->
+<section class="section" id="experience">
+  <div class="sec-tag">// 03. experience</div>
+  <h2 class="sec-title">Work History</h2>
+  <div class="sec-line"></div>
+
+  <div class="exp-item">
+    <div class="exp-date">Dec 2023<br>— Present</div>
+    <div>
+      <span class="exp-badge">current · sde-2</span>
+      <div class="exp-role">Software Development Engineer II</div>
+      <div class="exp-company">Neokred Technologies · Full Stack | Distributed Systems | Fintech · Bangalore</div>
+      <ul class="exp-points">
+        <li>Architected migration from monolithic MERN stack to <b>microservices</b> using Kafka, gRPC, and Redis — enabling horizontal scaling and service isolation across teams.</li>
+        <li>Designed <b>event-driven transaction processing pipelines</b> for high-throughput financial data, improving system throughput by <b>40%</b>.</li>
+        <li>Reduced API latency by <b>60%</b> via Redis caching, optimised query patterns, and efficient inter-service communication.</li>
+        <li>Built callback retry mechanism for payment systems (Equitas &amp; Shivalik) with <b>exponential backoff</b> (5/10/15 min); auto-enables manual retry only after all automated attempts exhausted.</li>
+        <li>Executed zero-downtime migration of <b>10M+ records</b> using Apache NiFi with data validation and rollback strategies.</li>
+        <li>Integrated <b>10+ banking &amp; payment providers</b> ensuring reliability, idempotency, and fault tolerance; defined API contracts and system design standards across squads.</li>
+        <li>Mentored engineers, led code reviews, and drove <b>architectural decision-making</b> for the platform.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="exp-item">
+    <div class="exp-date">Dec 2022<br>— Dec 2023</div>
+    <div>
+      <span class="exp-badge blue">sde-1</span>
+      <div class="exp-role">Software Development Engineer I</div>
+      <div class="exp-company">Neokred Technologies · Bangalore</div>
+      <ul class="exp-points">
+        <li>Developed full-stack fintech features end-to-end using <b>React, Node.js, and MongoDB</b>; built scalable REST APIs for transaction ingestion, processing, and reporting.</li>
+        <li>Optimised MongoDB queries and indexing strategies for high-volume datasets; built responsive dashboards for merchants and internal operations.</li>
+      </ul>
+    </div>
+  </div>
+
+</section>
+
+<hr class="divider" />
+
+<!-- ── PROJECTS ──────────────────────────────────────────── -->
+<section class="section" id="projects">
+  <div class="sec-tag">// 04. projects</div>
+  <h2 class="sec-title">What I've Built</h2>
+  <div class="sec-line"></div>
+  <div class="projects-grid">
+
+    <!-- AI Finance Dashboard — FEATURED -->
+    <div class="project-card featured">
+      <div class="project-top">
+        <div class="project-dot"></div>
+        <div class="project-links">
+          <a href="https://ai-finance-dashboard-bice-alpha.vercel.app/" target="_blank" rel="noopener" class="project-link live">↗ live demo</a>
+          <a href="https://github.com/snoorbasha50/Ai-Financedashboard" target="_blank" rel="noopener" class="project-link">github →</a>
+        </div>
+      </div>
+      <div class="project-title">AI Finance Dashboard</div>
+      <div class="project-desc">
+        AI-powered personal finance platform that parses bank statement PDFs using <b>Groq LLaMA 3.3 70B</b> for automated transaction categorisation with live updates via Socket.io.<br><br>
+        Event-driven microservices with <b>Apache Kafka</b> — optionally replaceable via env flag, mirroring the same architectural pattern used in production migration from self-hosted Kafka to managed services.<br><br>
+        <b>RAG with BM25 keyword retrieval</b> for contextual AI chat over personal transaction history — zero embedding cost, sub-second retrieval. Deployed on AWS EC2 + Nginx + multi-stage Docker; CI/CD via GitHub Actions.
+      </div>
+      <div class="project-stack">
+        <span class="tag tag-g">Node.js</span>
+        <span class="tag tag-g">React</span>
+        <span class="tag tag-g">Kafka</span>
+        <span class="tag tag-g">MongoDB</span>
+        <span class="tag tag-g">Redis</span>
+        <span class="tag tag-p">Groq LLaMA 3.3</span>
+        <span class="tag tag-p">RAG · BM25</span>
+        <span class="tag tag-b">GraphQL</span>
+        <span class="tag tag-o">Docker</span>
+        <span class="tag tag-o">AWS EC2</span>
+        <span class="tag tag-o">GitHub Actions</span>
+      </div>
+    </div>
+
+    <!-- Crypto Volatility Predictor -->
+    <div class="project-card featured2">
+      <div class="project-top">
+        <div class="project-dot p"></div>
+        <div class="project-links">
+          <a href="https://github.com/snoorbasha50/Crypto_Voladility_Predictor" target="_blank" rel="noopener" class="project-link">github →</a>
+        </div>
+      </div>
+      <div class="project-title">Crypto Volatility Predictor</div>
+      <div class="project-desc">
+        ML pipeline predicting next-day volatility for BTC, ETH, SOL, XRP &amp; BNB by combining <b>OHLCV technical indicators</b> (RSI, MA, returns) with VADER news sentiment analysis.<br><br>
+        Per-coin <b>RandomForestClassifier with GridSearchCV</b> tuning. Deployed as an interactive Streamlit dashboard with live price charts and model confidence scores via CoinGecko API.
+      </div>
+      <div class="project-stack">
+        <span class="tag tag-p">Python</span>
+        <span class="tag tag-p">Scikit-learn</span>
+        <span class="tag tag-p">VADER NLP</span>
+        <span class="tag tag-p">RandomForest</span>
+        <span class="tag tag-w">Streamlit</span>
+        <span class="tag tag-w">Pandas</span>
+        <span class="tag tag-w">CoinGecko API</span>
+      </div>
+    </div>
+
+    <!-- Collectbot — Production -->
+    <div class="project-card">
+      <div class="project-top">
+        <div class="project-dot b"></div>
+        <div class="project-links">
+          <span class="project-link" style="cursor:default; color: var(--dim);">production</span>
+        </div>
+      </div>
+      <div class="project-title">Collectbot — Payment Platform</div>
+      <div class="project-desc">
+        Production fintech platform at Neokred. Led V1→V2 architectural transformation — upgraded from MERN monolith to <b>TypeScript microservices</b> with Kafka, gRPC, GraphQL and Redis.<br><br>
+        Handles real payment flows across <b>10+ banks</b> with idempotency, exponential backoff retry, and fault-tolerant callback mechanisms. Processed <b>10M+ records</b> via zero-downtime NiFi migration.
+      </div>
+      <div class="project-stack">
+        <span class="tag tag-b">TypeScript</span>
+        <span class="tag tag-b">Fastify</span>
+        <span class="tag tag-b">gRPC</span>
+        <span class="tag tag-b">GraphQL</span>
+        <span class="tag tag-g">Kafka</span>
+        <span class="tag tag-g">Redis</span>
+        <span class="tag tag-g">MongoDB</span>
+        <span class="tag tag-w">Apache NiFi</span>
+        <span class="tag tag-o">Docker</span>
+      </div>
+    </div>
+
+    <!-- Microservices Boilerplate -->
+    <div class="project-card">
+      <div class="project-top">
+        <div class="project-dot o"></div>
+        <div class="project-links">
+          <a href="https://github.com/snoorbasha50" target="_blank" rel="noopener" class="project-link">github →</a>
+        </div>
+      </div>
+      <div class="project-title">Microservices Boilerplate</div>
+      <div class="project-desc">
+        Production-ready Node.js microservices starter with Docker Compose, Kafka, Redis, MongoDB, and <b>gRPC inter-service communication</b>.<br><br>
+        Includes GitHub Actions <b>CI/CD pipeline</b>, health checks, structured logging, Nginx reverse proxy config, and full environment management — ready to fork and deploy.
+      </div>
+      <div class="project-stack">
+        <span class="tag tag-b">Node.js</span>
+        <span class="tag tag-b">TypeScript</span>
+        <span class="tag tag-b">gRPC</span>
+        <span class="tag tag-g">Kafka</span>
+        <span class="tag tag-g">Redis</span>
+        <span class="tag tag-o">Docker Compose</span>
+        <span class="tag tag-o">CI/CD</span>
+        <span class="tag tag-w">Nginx</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- ── DSA ──────────────────────────────────────────── -->
+<section class="section" id="dsa">
+  <div class="sec-tag">// 05. dsa</div>
+  <h2 class="sec-title">Problem Solving</h2>
+  <div class="sec-line"></div>
+  <div class="lc-grid">
+    <div class="lc-card">
+      <div class="lc-num e">~55</div>
+      <div class="lc-label">easy</div>
+    </div>
+    <div class="lc-card">
+      <div class="lc-num m">~35</div>
+      <div class="lc-label">medium</div>
+    </div>
+    <div class="lc-card">
+      <div class="lc-num h">~10</div>
+      <div class="lc-label">hard</div>
+    </div>
+  </div>
+  <div class="lc-topics">
+    <div>
+      <div style="font-family:var(--display);font-size:1.6rem;font-weight:800;line-height:1">
+        100+ <span style="color:var(--accent)">solved</span>
+      </div>
+      <div class="lc-topics-list" style="margin-top:.75rem;">
+        <span class="tag tag-w">Arrays</span>
+        <span class="tag tag-w">Trees</span>
+        <span class="tag tag-w">Dynamic Programming</span>
+        <span class="tag tag-w">Graphs</span>
+        <span class="tag tag-w">Sliding Window</span>
+        <span class="tag tag-w">BFS / DFS</span>
+        <span class="tag tag-w">Hashing</span>
+        <span class="tag tag-w">Binary Search</span>
+        <span class="tag tag-w">Two Pointers</span>
+      </div>
+    </div>
+    <a href="https://leetcode.com/u/snoorbasha48/" target="_blank" rel="noopener" class="cta-ghost" style="font-size:12px;padding:8px 20px;white-space:nowrap">View LeetCode →</a>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- ── CONTACT ──────────────────────────────────────────── -->
+<section class="section" id="contact">
+  <div class="sec-tag">// 06. contact</div>
+  <h2 class="sec-title">Let's Talk</h2>
+  <div class="sec-line"></div>
+  <p class="contact-intro">
+    Currently open to <strong>SDE-2 / Senior Engineer</strong> roles at product companies or high-growth fintech startups. If you're building something in distributed systems, payments, or AI infrastructure — I'd love to connect.
+  </p>
+  <div class="contact-grid">
+    <a href="mailto:snoorbasha50@gmail.com" class="contact-card">
+      <div class="contact-icon">@</div>
+      <div>
+        <div class="contact-label">email</div>
+        <div class="contact-val">snoorbasha50@gmail.com</div>
+      </div>
+    </a>
+    <a href="https://linkedin.com/in/noorbasha-shaik-491aa2201" target="_blank" rel="noopener" class="contact-card">
+      <div class="contact-icon">in</div>
+      <div>
+        <div class="contact-label">linkedin</div>
+        <div class="contact-val">noorbasha-shaik</div>
+      </div>
+    </a>
+    <a href="https://github.com/snoorbasha50" target="_blank" rel="noopener" class="contact-card">
+      <div class="contact-icon">gh</div>
+      <div>
+        <div class="contact-label">github</div>
+        <div class="contact-val">snoorbasha50</div>
+      </div>
+    </a>
+    <a href="https://leetcode.com/u/snoorbasha48/" target="_blank" rel="noopener" class="contact-card">
+      <div class="contact-icon">lc</div>
+      <div>
+        <div class="contact-label">leetcode</div>
+        <div class="contact-val">snoorbasha48</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<footer>
+  designed &amp; built by <span>noorbasha shaik</span> &nbsp;·&nbsp; bangalore &nbsp;·&nbsp; 2025
+</footer>
+
+</body>
+</html>
