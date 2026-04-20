@@ -338,6 +338,30 @@
     }
     .lc-topics-list { display: flex; flex-wrap: wrap; gap: 6px; }
 
+    /* ── BLOGS ──────────────────────────────────────── */
+    .blogs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 1.2rem; }
+    .blog-card {
+      background: var(--bg3); border: 1px solid var(--border);
+      border-radius: 14px; padding: 1.75rem;
+      display: flex; flex-direction: column; gap: .75rem;
+      text-decoration: none; color: var(--text);
+      transition: border-color .25s, transform .2s;
+    }
+    .blog-card:hover { border-color: var(--border2); transform: translateY(-2px); }
+    .blog-meta { display: flex; justify-content: space-between; align-items: center; }
+    .blog-tag {
+      font-size: 10px; font-family: var(--mono); color: var(--accent);
+      background: rgba(99,179,237,.07); border: 1px solid rgba(99,179,237,.2);
+      padding: 3px 9px; border-radius: 4px; letter-spacing: .04em;
+    }
+    .blog-date { font-size: 11px; color: var(--dim); font-family: var(--mono); }
+    .blog-title {
+      font-family: var(--display); font-size: 1rem;
+      font-weight: 700; line-height: 1.3;
+    }
+    .blog-desc { font-size: 13px; color: #7a8fa8; line-height: 1.75; flex: 1; font-weight: 300; }
+    .blog-read { font-size: 12px; color: var(--accent); font-family: var(--mono); letter-spacing: .04em; margin-top: auto; }
+
     /* ── CONTACT ────────────────────────────────────── */
     .contact-intro { max-width: 520px; color: #7a8fa8; line-height: 1.85; margin-bottom: 2.5rem; font-weight: 300; }
     .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
@@ -395,6 +419,7 @@
     <li><a href="#skills">skills</a></li>
     <li><a href="#experience">experience</a></li>
     <li><a href="#projects">projects</a></li>
+    <li><a href="#blogs">blogs</a></li>
     <li><a href="#dsa">dsa</a></li>
     <li><a href="#contact">contact</a></li>
   </ul>
@@ -434,7 +459,7 @@
       <div class="stat-label">yrs experience</div>
     </div>
     <div class="stat">
-      <div class="stat-num">10<b>+</b></div>
+      <div class="stat-num">15<b>+</b></div>
       <div class="stat-label">bank integrations</div>
     </div>
     <div class="stat">
@@ -463,7 +488,7 @@
     <div class="about-text">
       <p>I'm a <strong>Software Development Engineer II</strong> based in Bangalore, building next-generation fintech infrastructure at <strong>Neokred Technologies</strong>.</p>
       <p>I architected the full migration from a monolithic MERN stack to a distributed <strong>TypeScript microservices platform</strong> — integrating Kafka for real-time event streaming, gRPC for inter-service communication, and Redis for high-performance caching across services.</p>
-      <p>My production work includes engineering <strong>10+ bank integrations</strong> with idempotency and fault tolerance, zero-downtime migration of <strong>10M+ records</strong> using Apache NiFi with rollback strategies, and a callback retry mechanism with <strong>exponential backoff</strong> for payment systems.</p>
+      <p>My production work includes engineering <strong>15+ bank integrations</strong> with idempotency and fault tolerance, zero-downtime migration of <strong>10M+ records</strong> using Apache NiFi with rollback strategies, and a callback retry mechanism with <strong>exponential backoff</strong> for payment systems.</p>
       <p>Outside of the distributed systems world, I build AI-powered applications — including a deployed <strong>RAG-based finance dashboard</strong> using LLaMA 3.3 70B, BM25 retrieval, and Kafka event streaming. I lead code reviews, drive architectural decisions, and mentor junior engineers.</p>
     </div>
     <div class="about-cards">
@@ -606,12 +631,11 @@
       <div class="exp-role">Software Development Engineer II</div>
       <div class="exp-company">Neokred Technologies · Full Stack | Distributed Systems | Fintech · Bangalore</div>
       <ul class="exp-points">
-        <li>Architected migration from monolithic MERN stack to <b>microservices</b> using Kafka, gRPC, and Redis — enabling horizontal scaling and service isolation across teams.</li>
-        <li>Designed <b>event-driven transaction processing pipelines</b> for high-throughput financial data, improving system throughput by <b>40%</b>.</li>
-        <li>Reduced API latency by <b>60%</b> via Redis caching, optimised query patterns, and efficient inter-service communication.</li>
+        <li>Led the <b>V1 → V2 architectural transformation</b> of Collectbot — rewrote the MERN monolith into a <b>TypeScript microservices platform</b> with Kafka, gRPC, GraphQL, and Redis. Same product, end-to-end ownership across both versions.</li>
+        <li>Designed <b>event-driven transaction processing pipelines</b> for high-throughput financial data, improving system throughput by <b>40%</b> and reducing API latency by <b>60%</b> via Redis caching and optimised inter-service communication.</li>
         <li>Built callback retry mechanism for payment systems (Equitas &amp; Shivalik) with <b>exponential backoff</b> (5/10/15 min); auto-enables manual retry only after all automated attempts exhausted.</li>
         <li>Executed zero-downtime migration of <b>10M+ records</b> using Apache NiFi with data validation and rollback strategies.</li>
-        <li>Integrated <b>10+ banking &amp; payment providers</b> ensuring reliability, idempotency, and fault tolerance; defined API contracts and system design standards across squads.</li>
+        <li>Integrated <b>15+ banking &amp; payment providers</b> ensuring reliability, idempotency, and fault tolerance; defined API contracts and system design standards across squads.</li>
         <li>Mentored engineers, led code reviews, and drove <b>architectural decision-making</b> for the platform.</li>
       </ul>
     </div>
@@ -624,8 +648,8 @@
       <div class="exp-role">Software Development Engineer I</div>
       <div class="exp-company">Neokred Technologies · Bangalore</div>
       <ul class="exp-points">
-        <li>Developed full-stack fintech features end-to-end using <b>React, Node.js, and MongoDB</b>; built scalable REST APIs for transaction ingestion, processing, and reporting.</li>
-        <li>Optimised MongoDB queries and indexing strategies for high-volume datasets; built responsive dashboards for merchants and internal operations.</li>
+        <li>Built and shipped <b>Collectbot V1</b> — a full-stack MERN payment platform handling real bank transaction flows. Developed REST APIs, merchant dashboards, and bank integration wrappers end-to-end.</li>
+        <li>Optimised MongoDB queries and indexing strategies for high-volume datasets; laid the data and API foundation that the V2 microservices rewrite would later scale from.</li>
       </ul>
     </div>
   </div>
@@ -705,8 +729,9 @@
       </div>
       <div class="project-title">Collectbot — Payment Platform</div>
       <div class="project-desc">
-        Production fintech platform at Neokred. Led V1→V2 architectural transformation — upgraded from MERN monolith to <b>TypeScript microservices</b> with Kafka, gRPC, GraphQL and Redis.<br><br>
-        Handles real payment flows across <b>10+ banks</b> with idempotency, exponential backoff retry, and fault-tolerant callback mechanisms. Processed <b>10M+ records</b> via zero-downtime NiFi migration.
+        <b>3 years, one product, two major versions.</b> Joined when it was a MERN monolith — spent the first 1.5 years building V1: REST APIs, bank integrations, merchant dashboards, and payment flows from scratch.<br><br>
+        Then led the V2 transformation: complete rewrite to <b>TypeScript microservices</b> with Kafka for event streaming, gRPC for inter-service calls, GraphQL for client APIs, and Redis for distributed caching — shipped without downtime.<br><br>
+        Integrated <b>15+ banking &amp; payment providers</b> with idempotency, exponential backoff retry, and fault-tolerant callback systems. Processed <b>10M+ records</b> via zero-downtime NiFi migration.
       </div>
       <div class="project-stack">
         <span class="tag tag-b">TypeScript</span>
@@ -721,28 +746,49 @@
       </div>
     </div>
 
-    <!-- Microservices Boilerplate -->
+    <!-- Stock Movement Predictor -->
+    <div class="project-card featured2">
+      <div class="project-top">
+        <div class="project-dot p"></div>
+        <div class="project-links">
+          <a href="https://github.com/snoorbasha50/stock-movement-svm" target="_blank" rel="noopener" class="project-link">github →</a>
+        </div>
+      </div>
+      <div class="project-title">Stock Movement Predictor · SVM</div>
+      <div class="project-desc">
+        <b>Support Vector Machine</b> model trained on historical stock data to predict whether the next day's closing price will go UP or DOWN. Engineered features include rolling returns, moving averages, and volume signals.<br><br>
+        Deployed as an interactive <b>Streamlit</b> dashboard with real-time predictions and per-symbol model evaluation.
+      </div>
+      <div class="project-stack">
+        <span class="tag tag-p">Python</span>
+        <span class="tag tag-p">SVM</span>
+        <span class="tag tag-p">Scikit-learn</span>
+        <span class="tag tag-w">Streamlit</span>
+        <span class="tag tag-w">Pandas</span>
+        <span class="tag tag-w">NumPy</span>
+      </div>
+    </div>
+
+    <!-- Spam Classifier -->
     <div class="project-card">
       <div class="project-top">
         <div class="project-dot o"></div>
         <div class="project-links">
-          <a href="https://github.com/snoorbasha50" target="_blank" rel="noopener" class="project-link">github →</a>
+          <a href="https://github.com/snoorbasha50/spam-classfier_Naive_bayes_theorem" target="_blank" rel="noopener" class="project-link">github →</a>
         </div>
       </div>
-      <div class="project-title">Microservices Boilerplate</div>
+      <div class="project-title">Spam Classifier · Naive Bayes NLP</div>
       <div class="project-desc">
-        Production-ready Node.js microservices starter with Docker Compose, Kafka, Redis, MongoDB, and <b>gRPC inter-service communication</b>.<br><br>
-        Includes GitHub Actions <b>CI/CD pipeline</b>, health checks, structured logging, Nginx reverse proxy config, and full environment management — ready to fork and deploy.
+        Spam detection using the <b>Naive Bayes algorithm</b> — one of NLP's most effective text classifiers. Covers text preprocessing (tokenisation, stop-word removal, TF-IDF vectorisation) and full evaluation metrics.<br><br>
+        A walkthrough of what I built, how it works, and why sometimes it doesn't.
       </div>
       <div class="project-stack">
-        <span class="tag tag-b">Node.js</span>
-        <span class="tag tag-b">TypeScript</span>
-        <span class="tag tag-b">gRPC</span>
-        <span class="tag tag-g">Kafka</span>
-        <span class="tag tag-g">Redis</span>
-        <span class="tag tag-o">Docker Compose</span>
-        <span class="tag tag-o">CI/CD</span>
-        <span class="tag tag-w">Nginx</span>
+        <span class="tag tag-p">Python</span>
+        <span class="tag tag-p">Naive Bayes</span>
+        <span class="tag tag-p">NLP</span>
+        <span class="tag tag-w">Scikit-learn</span>
+        <span class="tag tag-w">TF-IDF</span>
+        <span class="tag tag-w">NLTK</span>
       </div>
     </div>
 
@@ -751,9 +797,61 @@
 
 <hr class="divider" />
 
+<!-- ── BLOGS ──────────────────────────────────────────── -->
+<section class="section" id="blogs">
+  <div class="sec-tag">// 05. writing</div>
+  <h2 class="sec-title">On Medium</h2>
+  <div class="sec-line"></div>
+  <div class="blogs-grid">
+
+    <a href="https://medium.com/@snoorbasha50/predicting-crypto-volatility-with-machine-learning-and-sentiment-analysis-e7f2593c2de7" target="_blank" rel="noopener" class="blog-card">
+      <div class="blog-meta">
+        <span class="blog-tag">ML · NLP</span>
+        <span class="blog-date">Jul 12, 2025</span>
+      </div>
+      <div class="blog-title">Predicting Crypto Volatility with Machine Learning &amp; Sentiment Analysis</div>
+      <div class="blog-desc">How I combined OHLCV technical indicators with VADER news sentiment to predict next-day BTC/ETH/SOL volatility using a RandomForest pipeline — and deployed it as a live Streamlit app.</div>
+      <div class="blog-read">Read on Medium →</div>
+    </a>
+
+    <a href="https://medium.com/@snoorbasha50/real-time-stock-movement-predictor-using-svm-streamlit-b717e6abbc2d" target="_blank" rel="noopener" class="blog-card">
+      <div class="blog-meta">
+        <span class="blog-tag">ML · SVM</span>
+        <span class="blog-date">Jul 6, 2025</span>
+      </div>
+      <div class="blog-title">Real-Time Stock Movement Predictor using SVM + Streamlit</div>
+      <div class="blog-desc">Building a Support Vector Machine trained on historical stock data to predict whether the next day's closing price will go UP or DOWN — walkthrough of features, training, and deployment.</div>
+      <div class="blog-read">Read on Medium →</div>
+    </a>
+
+    <a href="https://medium.com/@snoorbasha50/building-a-spam-classifier-with-naive-bayes-in-nlp-7928e77edd7d" target="_blank" rel="noopener" class="blog-card">
+      <div class="blog-meta">
+        <span class="blog-tag">NLP · Bayes</span>
+        <span class="blog-date">Jul 3, 2025</span>
+      </div>
+      <div class="blog-title">Building a Spam Classifier with Naive Bayes in NLP</div>
+      <div class="blog-desc">Why Naive Bayes works so well for spam detection, where it fails, and what I learned building one from scratch — a quick walkthrough of the math and the code.</div>
+      <div class="blog-read">Read on Medium →</div>
+    </a>
+
+    <a href="https://medium.com/@snoorbasha50/natural-language-processing-c7f42a934c83" target="_blank" rel="noopener" class="blog-card">
+      <div class="blog-meta">
+        <span class="blog-tag">NLP</span>
+        <span class="blog-date">2025</span>
+      </div>
+      <div class="blog-title">Natural Language Processing</div>
+      <div class="blog-desc">An introduction to NLP — how it works, how it evolved, and where it's headed. Breaking down the core concepts for engineers getting started with text processing and language models.</div>
+      <div class="blog-read">Read on Medium →</div>
+    </a>
+
+  </div>
+</section>
+
+<hr class="divider" />
+
 <!-- ── DSA ──────────────────────────────────────────── -->
 <section class="section" id="dsa">
-  <div class="sec-tag">// 05. dsa</div>
+  <div class="sec-tag">// 06. dsa</div>
   <h2 class="sec-title">Problem Solving</h2>
   <div class="sec-line"></div>
   <div class="lc-grid">
@@ -795,7 +893,7 @@
 
 <!-- ── CONTACT ──────────────────────────────────────────── -->
 <section class="section" id="contact">
-  <div class="sec-tag">// 06. contact</div>
+  <div class="sec-tag">// 07. contact</div>
   <h2 class="sec-title">Let's Talk</h2>
   <div class="sec-line"></div>
   <p class="contact-intro">
