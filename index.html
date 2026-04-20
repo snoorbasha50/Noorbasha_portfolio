@@ -267,12 +267,14 @@
     .exp-company { font-size: 13px; color: var(--muted); margin-bottom: 1.2rem; }
     .exp-points { list-style: none; display: flex; flex-direction: column; gap: 8px; }
     .exp-points li {
-      font-size: 13.5px; color: #8fa3b8; display: flex;
-      gap: 10px; line-height: 1.65; font-weight: 300;
+      font-size: 13.5px; color: #8fa3b8;
+      padding-left: 1.4rem; position: relative;
+      line-height: 1.65; font-weight: 300;
     }
     .exp-points li::before {
-      content: '›'; color: var(--accent); flex-shrink: 0;
-      font-size: 18px; margin-top: -2px;
+      content: '›'; color: var(--accent);
+      position: absolute; left: 0; top: 0;
+      font-size: 18px; line-height: 1.65;
     }
     .exp-points b { color: var(--text); font-weight: 500; }
 
